@@ -1,0 +1,64 @@
+{% extends 'base_nav.html' %}
+{% load static %}
+{% block title %}Jobseeker Home{% endblock title %}
+{% block body %}
+<div class="flex flex-row w-full mt-6">
+    <h1 class="mb-4 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-3xl mx-10">
+        Welcome, {{user.first_name}} {{user.last_name}}, following are the all available jobs,
+    </h1>
+    <a href="{% url 'applied_list' %}"><img class="mb-2" title="See all applications" width="40px" height="10px" src="{% static 'portal/see.png' %}" alt="See all applications" srcset=""></a>
+</div>
+<div class="flex flex-row border-solid border-2 border-gray-600 w-auto mx-10 p-3 mb-4">
+    <div class="w-full">
+        <div class="relative overflow-x-auto">
+            {% if jobs %}
+            <table id="dtable" class="display cell-border">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Requirements</th>
+                        <th>Location</th>
+                        <th>Salary</th>
+                        <th>Posted</th>
+                        <th>Expiry</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in jobs %}
+                    <tr>
+                        <td>
+                            {{job.title}}
+                        </td>
+                        <td>
+                            {{job.description}}
+                        </td>
+                        <td>
+                            {{job.requirements}}
+                        </td>
+                        <td>
+                            {{job.location}}
+                        </td>
+                        <td>
+                            {{job.salary}}
+                        </td>
+                        <td>
+                            {{job.posted_date}}
+                        </td>
+                        <td>
+                            {{job.expiry_date}}
+                        </td>
+                        <td><a title="Apply for this Job" href="{% url 'apply' job.pk %}"><img width="30px" height="30px" src="{% static 'portal/apply.png' %}" alt="Apply for this Job" srcset=""></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <h2> No jobs available now...! </h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

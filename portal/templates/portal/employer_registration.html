@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Register as Employer{% endblock title %}
+{% block body %}
+<div class="flex items-center justify-center h-screen">
+    <div class="w-9/12 bg-white border border-gray-300 rounded-lg shadow sm:p-6 md:p-8">
+        <form class="space-y-6" action="#" method="post">
+            {% csrf_token %}
+            <h5 class="text-xl font-medium text-gray-900">Employer Registration</h5>
+            <div class="flex flex-row gap-5">
+                <div>
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                    <input type="text" name="name" id="name"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="Enter Name" required>
+                </div>
+                <div>
+                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Username</label>
+                    <input type="text" name="username" id="username"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="Enter Username" required>
+                </div>
+                <div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                    <input type="email" name="email" id="eamil"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="Enter Email Address" required>
+                </div>
+            </div>
+            <div>
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter Password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required>
+            </div>
+            <div>
+                <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Address</label>
+                <input type="text" name="address" id="address" placeholder="Enter Address"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+            <div>
+                <label for="about" class="block mb-2 text-sm font-medium text-gray-900">About</label>
+                <input type="text" name="about" id="about" placeholder="Write about your company"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+            <div>
+                <label for="industry" class="block mb-2 text-sm font-medium text-gray-900">Industry</label>
+                <input type="text" name="industry" id="industry" placeholder="Enter Industry"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+            <div>
+                <label for="website" class="block mb-2 text-sm font-medium text-gray-900">Website</label>
+                <input type="url" name="website" id="website" placeholder="Enter Website"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+            <button type="submit"
+                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Register</button>
+            <div class="text-sm font-medium text-gray-500">
+                Already registered? <a href={% url 'login' %} class="text-blue-700 hover:underline">Login to your
+                    Account</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

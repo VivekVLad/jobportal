@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Register as Job Seeker{% endblock title %}
+{% block body %}
+<div class="mt-20 flex items-center justify-center h-screen">
+    <div class="w-9/12 bg-white border border-gray-300 rounded-lg shadow sm:p-6 md:p-8">
+        <form class="space-y-6" action="#" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h5 class="text-xl font-medium text-gray-900">Job Seeker Registration</h5>
+            <div class="flex flex-row gap-5">
+                <div>
+                    <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900">First Name</label>
+                    <input type="text" name="firstname" id="firstname"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="First Name" required>
+                </div>
+                <div>
+                    <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900">Last Name</label>
+                    <input type="text" name="lastname" id="lastname"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="Last Name" required>
+                </div>
+                <div>
+                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Username</label>
+                    <input type="text" name="username" id="username"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        placeholder="Username" required>
+                </div>
+            </div>
+            <div>
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                <input type="password" name="password" id="password" placeholder="Password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required>
+            </div>
+            <div>
+                <label for="gender" class="block mb-2 text-sm font-medium text-gray-900">Gender</label>
+                <select id="gender" name="gender"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option selected disabled>Choose a Gender</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div>
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                <input type="email" name="email" id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Email" required>
+            </div>
+            <div>
+                <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Address</label>
+                <input type="text" name="address" id="address" placeholder="Address"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+            <div>
+                <label for="resume" class="block mb-2 text-sm font-medium text-gray-900">Resume</label>
+                <input type="file" name="resume" id="resume" placeholder="Upload Resume"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required>
+            </div>
+            <div>
+                <label for="dob" class="block mb-2 text-sm font-medium text-gray-900">DOB</label>
+                <input type="date" name="dob" id="dob" required
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+            <div>
+                <label for="about" class="block mb-2 text-sm font-medium text-gray-900">About</label>
+                <input type="text" name="about" id="about" placeholder="Write about yourself"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+            <button type="submit"
+                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Register</button>
+            <div class="text-sm font-medium text-gray-500">
+                Already registered? <a href={% url 'login' %} class="text-blue-700 hover:underline">Login to your
+                    Account</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

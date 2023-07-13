@@ -1,0 +1,71 @@
+{% extends 'base_nav.html' %}
+{% block title %}Update Job{% endblock title %}
+{% block body %}
+<div class="flex items-center justify-center h-screen">
+    <div class="w-full max-w-sm p-4 bg-white border border-gray-300 rounded-lg shadow sm:p-6 md:p-8">
+        <form method="post">
+            {% csrf_token %}
+            <h5 class="text-xl font-medium text-gray-900">Update Job Details</h5>
+            <div class="mt-2">
+                <label for="id_title" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
+                <input type="text" name="{{ form.title.name }}" id="id_title" value="{{ form.title.value }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required>
+            </div>
+            <div class="mt-2">
+                <label for="id_description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                <input type="text" name="{{ form.description.name }}" id="id_description"
+                    value="{{ form.description.value }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required>
+            </div>
+            <div class="mt-2">
+                <label for="id_requirements" class="block mb-2 text-sm font-medium text-gray-900">Requirements</label>
+                <input type="text" name="{{ form.requirements.name }}" id="id_requirements"
+                    value="{{ form.requirements.value }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+            <div class="mt-2">
+                <label for="id_location" class="block mb-2 text-sm font-medium text-gray-900">Location</label>
+                <input type="text" name="{{ form.location.name }}" id="id_location" value="{{ form.location.value }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+            <div class="mt-2">
+                <label for="id_salary" class="block mb-2 text-sm font-medium text-gray-900">Salary</label>
+                <input type="text" name="{{ form.salary.name }}" id="id_salry" value="{{ form.salary.value }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            </div>
+            <div class="flex flex-row gap-4">
+                <div class="mt-2">
+                    <label for="id_experience_min" class="block mb-2 text-sm font-medium text-gray-900">Experience
+                        Minimum</label>
+                    <input type="text" name="{{ form.experience_min.name }}" id="id_experience_min"
+                        value="{{ form.experience_min.value }}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                </div>
+                <div class="mt-2">
+                    <label for="id_experience_max" class="block mb-2 text-sm font-medium text-gray-900">Experience
+                        Maximum</label>
+                    <input type="text" name="{{ form.experience_max.name }}" id="id_experience_max"
+                        value="{{ form.experience_max.value }}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                </div>
+            </div>
+            <div class="mt-2">
+                <label for="id_expiry_date" class="block mb-2 text-sm font-medium text-gray-900">Expiry Date</label>
+                <input type="date" name="{{ form.expiry_date.name }}" id="id_expiry_date"
+                    value="{{ form.expiry_date.value }}"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    required>
+            </div>
+            <div class="mt-2">
+                <button type="submit"
+                    class="mt-4 w-1/4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Save</button>
+
+                <a href="{% url 'employer_home' %}"
+                    class="mt-6 w-2/4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

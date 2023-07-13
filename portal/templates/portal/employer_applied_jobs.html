@@ -1,0 +1,83 @@
+{% extends 'base_nav.html' %}
+{% block title %}Job Applications{% endblock title %}
+{% block body %}
+<div class="flex flex-row w-full mt-6 gap-4">
+    <h1 class="mb-4 text-6xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl mx-10">
+        Following are the applicants,
+    </h1>
+</div>
+<div class="flex flex-row border-solid border-2 border-gray-600 w-auto mx-10 p-3">
+    <div class="w-full">
+        <div class="relative overflow-x-auto">
+            {% if applications %}
+            <table id="dtable" class="display cell-border">
+                <thead>
+                    <tr>
+                        <th>Applicant's Name</th>
+                        <th>Email</th>
+                        <th>Gender </th>
+                        <th>DOB</th>
+                        <th>Resume</th>
+                        <th>Job Title</th>
+                        <th>Applied On</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for app in applications %}
+                    <tr>
+                        <td>
+                            {{app.applicant.user.first_name}} {{app.applicant.user.last_name}}
+                            
+                        </td>
+                        <td>
+                            {{app.applicant.user.email}}
+                        </td>
+                        <td>
+                            {{app.applicant.gender}}
+                        </td>
+                        <td>
+                            {{app.applicant.dob}}
+                        </td>
+                        <td>
+                            <a title="Download Resume" class="text-blue-500"
+                                href="{% url 'download' app.applicant.pk %}">{{app.applicant.resume}}</a>
+                        </td>
+                        <td>
+                            {{app.job.title}}
+                        </td>
+                        <td>
+                            {{app.applied_on}}
+                        </td>
+                        <td>
+                            <form method="post" action="{% url 'change_status' app.pk %}">
+                                {% csrf_token %}
+                                <div class="flex flex-col gap-1">
+                                    <select name="status"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                        <option value="Applied" {% if app.status == 'Applied' %}selected{% endif %}>
+                                            Applied</option>
+                                        <option value="Under Review" {% if app.status == 'Under Review' %}selected{% endif %}>
+                                            Under Review</option>
+                                        <option value="Selected" {% if app.status == 'Selected' %}selected{% endif %}>
+                                            Selected</option>
+                                        <option value="Rejected" {% if app.status == 'Rejected' %}selected{% endif %}>
+                                            Rejected</option>
+                                    </select>
+                                    <button
+                                        class="w-20 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-1.5 py-2 text-center"
+                                        type="submit">Change</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <h2> No applicants yet...! </h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock body %}

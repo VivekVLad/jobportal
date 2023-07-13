@@ -1,0 +1,36 @@
+{% extends 'base_nav.html' %}
+{% load static %}
+{% block title %}Job Application{% endblock title %}
+{% block body %}
+<h1 class="mt-10 ml-20 text-5xl">{{job.title}}</h1>
+<div class="mt-3 ml-20 flex flex-row gap-3">
+    <img title="Location" width="30px" height="20px" src="{% static 'portal/location.png' %}" alt="Location">
+    <h6 class="text-2xl">{{job.location}}</h6>
+    <img class="ml-5" title="Salary" width="30px" height="20px" src="{% static 'portal/salary.png' %}" alt="Salary">
+    <h6 class="text-2xl">{{job.salary}}</h6>
+    <img class="ml-5"  title="Experience" width="30px" height="20px" src="{% static 'portal/experience.png' %}" alt="Experience">
+    <h6 class="text-2xl">{{job.experience_min}}-{{job.experience_max}} Years</h6>
+    <img class="ml-5"  title="Employer" width="30px" height="20px" src="{% static 'portal/employer.png' %}" alt="Employer">
+    <h6 class="text-2xl">{{employer}}</h6>
+    <img class="ml-5"  title="website" width="30px" height="20px" src="{% static 'portal/website.png' %}" alt="Website">
+    <h6 class="text-2xl text-blue-600"><a href="{{website}}">{{website}}</a></h6>
+</div>
+
+<div class="p-5 ml-20 mt-5 mr-5 border border-sky-500">
+    <h3 class="text-2xl font-bold">Job Description:</h3>
+    <p class="text-xl">{{job.description}}</p>
+</div>
+<div class="p-5 ml-20 mt-5 mr-5 border border-sky-500">
+    <h3 class="text-2xl font-bold">Job Requirements:</h3>
+    <p class="text-xl">{{job.requirements}}</p>
+</div>
+
+<div class="flex ml-20 mt-10 gap-1">
+    <form action="" method="post">
+        {% csrf_token %}
+        <button class="{% if status %}hidden {% endif %} text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="submit">Apply</button>
+    </form>
+    <a href="{% url 'seeker_home' %}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cancel</a>
+</div>
+
+{% endblock body %}

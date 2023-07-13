@@ -1,0 +1,72 @@
+{% extends 'base_nav.html' %}
+{% load static %}
+{% block title %}Employer Home{% endblock title %}
+
+{% block body %}
+<div class="flex flex-row w-full mt-6 gap-4">
+    <h1 class="mb-4 text-6xl font-bold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl mx-10">
+        {{employer}}
+    </h1>
+    <a href="{% url 'job-create' %}" class="mb-4 place-self-end border-2 border-gray-500" title="Add a job"><img width="35px" height="35px" src="{% static 'portal/create.png' %}" alt="Add new Job" srcset=""></a>
+    <a href="{% url 'employer_applied_list' %}" class="mb-4 place-self-end"><img title="See Applications" width="40px" height="10px" src="{% static 'portal/see.png' %}" alt="See all applications" srcset=""></a>
+</div>
+<div class="flex flex-row border-solid border-2 border-gray-600 w-auto mx-10 p-3 mb-4">
+    <div class="w-full">
+        <div class="relative overflow-x-auto">
+            {% if jobs %}
+            <table id="dtable" class="display cell-border">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Requirements</th>
+                        <th>Location</th>
+                        <th>Salary</th>
+                        <th>Posted</th>
+                        <th>Expiry</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in jobs %}
+                    <tr>
+                        <td>
+                            {{job.title}}
+                        </td>
+                        <td>
+                            {{job.description}}
+                        </td>
+                        <td>
+                            {{job.requirements}}
+                        </td>
+                        <td>
+                            {{job.location}}
+                        </td>
+                        <td>
+                            {{job.salary}}
+                        </td>
+                        <td>
+                            {{job.posted_date}}
+                        </td>
+                        <td>
+                            {{job.expiry_date}}
+                        </td>
+                        <td>
+                            <div class="flex flex-col gap-2">
+                                <a title="Edit Job Details" href="{% url 'job-update' job.pk %}"><img width="35px" height="35px" src="{% static 'portal/edit.png' %}" alt="Edit Job" srcset=""></a>
+                                <a title="Delete Job" href="{% url 'job-delete' job.pk %}"><img width="30px" height="30px" src="{% static 'portal/delete.png' %}" alt="Delete Job" srcset=""></a>
+                            </div>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <h2> No Jobs added yet...! </h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
